@@ -111,7 +111,8 @@ export default function Board({ handleClick, board }) {
                 return (
                   <Square
                     key={y}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation()
                       handleClick(x, y)
                     }}
                   >

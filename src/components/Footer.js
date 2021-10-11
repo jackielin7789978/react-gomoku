@@ -8,6 +8,7 @@ const FooterContainer = styled.div`
   padding: 30px 0px;
   text-align: center;
   font-size: 18px;
+  letter-spacing: 1px;
   a {
     color: #8398a3;
     transition: ease 0.2s;
@@ -20,7 +21,7 @@ const FooterContainer = styled.div`
 export default function Footer() {
   return (
     <FooterContainer>
-      © Copyright 2021. Made with ♥ by{'  '}
+      © Copyright 2021. Made by {'  '}
       <a
         href='https://github.com/jackielin7789978'
         target='_blank'

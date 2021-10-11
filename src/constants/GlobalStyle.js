@@ -6,7 +6,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     list-style: none;
-    font-family: 'Kalam', cursive;
+    font-family: 'NTR', sans-serif;
+    font-family: 'Gemunu Libre', sans-serif;
   }
   body {
     background: #eee;

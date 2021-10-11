@@ -8,7 +8,7 @@ import Footer from './Footer'
 import { calculateWinner } from '../utils'
 
 const Title = styled.div`
-  font-size: 36px;
+  font-size: 48px;
   color: #222;
   width: 500px;
   text-align: center;
