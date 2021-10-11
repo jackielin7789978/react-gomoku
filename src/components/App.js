@@ -30,6 +30,7 @@ export default function App() {
   const winner = calculateWinner(currentSquares, currentX, currentY)
 
   function handleClick(x, y) {
+    console.log(x, y)
     if (winner || board.squares[x][y]) return
     const newRow = board.squares[x].map((square, index) => {
       if (index !== y) return square

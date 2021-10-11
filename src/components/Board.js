@@ -34,7 +34,7 @@ const CoverBars = styled.div`
     left: 0;
   }
   &:nth-child(4) {
-    width: 13px;
+    width: 12px;
     height: 100%;
     right: 0;
   }
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   height: 541px;
   position: relative;
   top: 14px;
-  left: 14px;
+  left: 15px;
   border-right: 1px solid #4a260f;
 `
 const Row = styled.div`
@@ -66,7 +66,7 @@ const Cross = styled.div`
   height: 30px;
   width: 1px;
   position: relative;
-  left: -15px;
+  left: -16px;
 
   &:after {
     background: #4a260f;
