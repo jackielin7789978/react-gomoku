@@ -8,12 +8,12 @@ const FooterContainer = styled.div`
   padding: 30px 0px;
   text-align: center;
   font-size: 18px;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   a {
     color: #8398a3;
     transition: ease 0.2s;
     &:hover {
-      color: #4290b8;
+      color: #41548b;
     }
   }
 `

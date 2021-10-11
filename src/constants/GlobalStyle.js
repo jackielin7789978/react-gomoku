@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Gemunu Libre', sans-serif;
   }
   body {
-    background: #eee;
+    background: #ececec;
     height: 100vh;
     overflow: hidden;
   }

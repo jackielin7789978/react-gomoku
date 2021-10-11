@@ -1,81 +1,70 @@
 import styled from 'styled-components'
 
 const ChessBoard = styled.div`
-  background: #bb9966;
+  background: #b89874;
   width: 570px;
   height: 570px;
-  margin: 0 auto;
   box-shadow: 4px 8px 12px 1px rgba(60, 60, 60, 0.5);
-  border-radius: 2px;
-  border: 1px solid transparent;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border-radius: 2px;
 `
-const CoverBars = styled.div`
+const ChessBorder = styled.div`
   position: absolute;
-  background: #bb9966;
-  z-index: 2;
+  background: #b89874;
 
   &:first-child {
     width: 100%;
     height: 14px;
+    top: 0;
+    z-index: 3;
   }
   &:nth-child(2) {
     width: 100%;
-    height: 13px;
+    height: 14px;
     bottom: 0;
+    z-index: 3;
   }
   &:nth-child(3) {
     width: 14px;
     height: 100%;
     left: 0;
+    z-index: 3;
   }
   &:nth-child(4) {
-    width: 12px;
+    width: 14px;
     height: 100%;
     right: 0;
+    z-index: 3;
   }
-`
-const Wrapper = styled.div`
-  width: 541px;
-  height: 541px;
-  position: relative;
-  top: 14px;
-  left: 15px;
-  border-right: 1px solid #4a260f;
 `
 const Row = styled.div`
   height: 30px;
   width: 570px;
   position: relative;
 `
-const Square = styled.div`
-  cursor: pointer;
+const Grid = styled.div`
+  position: relative;
   display: inline-block;
+  top: 0;
+  left: 0px;
   width: 30px;
   height: 30px;
-  position: relative;
-  right: 15px;
-  bottom: 15px;
+  border: 1px solid #413320dd;
+  transform: translate(-50%, -50%);
 `
-const Cross = styled.div`
-  background: #4a260f;
-  height: 30px;
-  width: 1px;
+const Square = styled.div`
+  cursor: pointer;
   position: relative;
-  left: -16px;
-
-  &:after {
-    background: #4a260f;
-    content: '';
-    width: 30px;
-    height: 1px;
-    position: absolute;
-    top: 50%;
-  }
+  display: inline-block;
+  left: 0px;
+  width: 30px;
+  height: 30px;
+  transform: translate(0, -2000%);
+  z-index: 5;
 `
 const Black = styled.div`
   display: inline-block;
@@ -97,26 +86,36 @@ const White = styled(Black)`
 `
 
 export default function Board({ handleClick, board }) {
+  const grids = Array(20)
+    .fill(0)
+    .map(() => Array(20).fill(null))
+
   return (
     <ChessBoard>
-      <CoverBars />
-      <CoverBars />
-      <CoverBars />
-      <CoverBars />
-      <Wrapper>
-        {board.squares.map((col, x) => {
-          return (
-            <Row key={x}>
-              {col.map((row, y) => {
-                return (
+      <ChessBorder />
+      <ChessBorder />
+      <ChessBorder />
+      <ChessBorder />
+      {grids.map((grid, index) => (
+        <Row key={index} style={{ width: '600px' }}>
+          {grid.map((row, i) => (
+            <Grid key={index[i]} />
+          ))}
+        </Row>
+      ))}
+      {board.squares.map((col, x) => {
+        return (
+          <Row key={x}>
+            {col.map((row, y) => {
+              return (
+                <>
                   <Square
-                    key={y}
+                    key={col[y]}
                     onClick={(e) => {
                       e.stopPropagation()
                       handleClick(x, y)
                     }}
                   >
-                    <Cross />
                     {!board.squares[x][y] ? (
                       <></>
                     ) : board.squares[x][y] === 'Black' ? (
@@ -125,12 +124,12 @@ export default function Board({ handleClick, board }) {
                       <White />
                     )}
                   </Square>
-                )
-              })}
-            </Row>
-          )
-        })}
-      </Wrapper>
+                </>
+              )
+            })}
+          </Row>
+        )
+      })}
     </ChessBoard>
   )
 }
