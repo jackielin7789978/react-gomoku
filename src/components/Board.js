@@ -35,7 +35,7 @@ const Black = styled.div`
   border-radius: 50%;
   background: #111;
   border: 1px solid #333;
-  z-index: 5;
+  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,9 +61,9 @@ export default function Board({ handleClick, board }) {
                     handleClick(x, y)
                   }}
                 >
-                  {board.squares[x][y] === null ? (
+                  {!board.squares[x][y] ? (
                     <></>
-                  ) : board.squares[x][y] ? (
+                  ) : board.squares[x][y] === 'Black' ? (
                     <Black />
                   ) : (
                     <White />

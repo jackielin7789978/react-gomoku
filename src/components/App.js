@@ -5,6 +5,7 @@ import Board from './Board'
 import Info from './Info'
 import Modal from './Modal'
 import Footer from './Footer'
+import { calculateWinner } from '../utils'
 
 const Title = styled.div`
   font-size: 36px;
@@ -19,19 +20,27 @@ export default function App() {
   const [board, setBoard] = useState({
     squares: Array(19)
       .fill(0)
-      .map(() => Array(19).fill(null))
+      .map(() => Array(19).fill(null)),
+    coordinates: [null, null]
   })
+
+  const currentSquares = board.squares
+  const currentX = board.coordinates[0]
+  const currentY = board.coordinates[1]
+  const winner = calculateWinner(currentSquares, currentX, currentY)
+
   function handleClick(x, y) {
-    if (board.squares[x][y] !== null) return
+    if (winner || board.squares[x][y]) return
     const newRow = board.squares[x].map((square, index) => {
       if (index !== y) return square
-      return isBlackNext ? true : false
+      return isBlackNext ? 'Black' : 'White'
     })
     setBoard({
       squares: board.squares.map((row, index) => {
         if (index !== x) return row
         return newRow
-      })
+      }),
+      coordinates: [x, y]
     })
     setIsBlackNext(!isBlackNext)
   }
@@ -42,7 +51,7 @@ export default function App() {
       <Title>Gomoku Game</Title>
       <Board board={board} handleClick={handleClick} />
       <Info />
-      <Modal />
+      {winner && <Modal winner={winner} />}
       <Footer />
     </>
   )

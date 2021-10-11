@@ -10,9 +10,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background: #eee;
-    position: relative;
-    outline: 1px solid red;
     height: 100vh;
+    overflow: hidden;
   }
   #root {
     padding: 1px;
