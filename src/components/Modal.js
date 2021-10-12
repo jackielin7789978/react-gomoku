@@ -29,12 +29,41 @@ const Restart = styled.a`
     color: #fff;
   }
 `
+const StartGame = styled(Restart)`
+  font-size: 54px;
+`
 
-export default function Modal({ winner }) {
+export default function Modal({
+  setIsPlaying,
+  playStart,
+  playClicked,
+  winner
+}) {
   return (
     <ModalContainer>
-      <EndingMsg>Winner is {winner}</EndingMsg>
-      <Restart href='/'>Play Again</Restart>
+      {!winner && (
+        <StartGame
+          onClick={() => {
+            setIsPlaying(true)
+            playStart()
+          }}
+        >
+          Start Game
+        </StartGame>
+      )}
+      {winner && (
+        <>
+          <EndingMsg>Winner is {winner}</EndingMsg>
+          <Restart
+            onClick={() => {
+              playClicked()
+              window.location.reload()
+            }}
+          >
+            Play Again
+          </Restart>
+        </>
+      )}
     </ModalContainer>
   )
 }

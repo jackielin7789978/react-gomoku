@@ -15,30 +15,27 @@ const ChessBoard = styled.div`
 const ChessBorder = styled.div`
   position: absolute;
   background: #b89874;
+  z-index: 1;
 
   &:first-child {
     width: 100%;
     height: 14px;
     top: 0;
-    z-index: 3;
   }
   &:nth-child(2) {
     width: 100%;
     height: 14px;
     bottom: 0;
-    z-index: 3;
   }
   &:nth-child(3) {
     width: 14px;
     height: 100%;
     left: 0;
-    z-index: 3;
   }
   &:nth-child(4) {
     width: 14px;
     height: 100%;
     right: 0;
-    z-index: 3;
   }
 `
 const Row = styled.div`
@@ -64,7 +61,25 @@ const Square = styled.div`
   width: 30px;
   height: 30px;
   transform: translate(0, -2000%);
-  z-index: 5;
+  z-index: 2;
+  span {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -60%);
+    transition: linear 0.1s;
+    z-index: 5;
+    &:hover {
+      background: ${({ $isBlackNext }) =>
+        $isBlackNext ? 'rgba(80, 80, 80, 0.8)' : 'rgba(200, 200, 200, 0.8)'};
+      box-shadow: 2px 2px 3px 0px rgba(90, 90, 90, 0.7);
+    }
+  }
 `
 const Black = styled.div`
   display: inline-block;
@@ -85,7 +100,12 @@ const White = styled(Black)`
   border: 1px solid #ddd;
 `
 
-export default function Board({ handleClick, board }) {
+export default function Board({
+  handleClick,
+  handleSound,
+  board,
+  $isBlackNext
+}) {
   const grids = Array(20)
     .fill(0)
     .map(() => Array(20).fill(null))
@@ -111,11 +131,14 @@ export default function Board({ handleClick, board }) {
                 <>
                   <Square
                     key={col[y]}
+                    $isBlackNext={$isBlackNext}
                     onClick={(e) => {
                       e.stopPropagation()
                       handleClick(x, y)
+                      handleSound($isBlackNext)
                     }}
                   >
+                    <span></span>
                     {!board.squares[x][y] ? (
                       <></>
                     ) : board.squares[x][y] === 'Black' ? (

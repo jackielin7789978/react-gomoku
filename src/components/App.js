@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import useSound from 'use-sound'
+import { gamestart, blackchess, whitechess, winning, click } from '../sounds'
 import styled from 'styled-components'
 import GlobalStyle from '../constants/GlobalStyle'
 import Board from './Board'
@@ -17,6 +19,7 @@ const Title = styled.div`
 `
 
 export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false)
   const [isBlackNext, setIsBlackNext] = useState(true)
   const [board, setBoard] = useState({
     squares: Array(19)
@@ -28,10 +31,18 @@ export default function App() {
   const currentSquares = board.squares
   const currentX = board.coordinates[0]
   const currentY = board.coordinates[1]
-  const winner = calculateWinner(currentSquares, currentX, currentY)
+  const [playStart] = useSound(gamestart, { volume: 2 })
+  const [playBlack] = useSound(blackchess, { volume: 2 })
+  const [playWhite] = useSound(whitechess, { volume: 2 })
+  const [playWinning] = useSound(winning, { volume: 2 })
+  const [playClicked] = useSound(click, { volume: 2 })
 
-  function handleClick(x, y) {
-    if (winner || board.squares[x][y]) return
+  const handleClick = (x, y) => {
+    if (
+      calculateWinner(currentSquares, currentX, currentY) ||
+      board.squares[x][y]
+    )
+      return
     const newRow = board.squares[x].map((square, index) => {
       if (index !== y) return square
       return isBlackNext ? 'Black' : 'White'
@@ -46,13 +57,35 @@ export default function App() {
     setIsBlackNext(!isBlackNext)
   }
 
+  const handleSound = ($isBlackNext) => {
+    $isBlackNext ? playBlack() : playWhite()
+  }
+
+  useEffect(() => {
+    if (calculateWinner(currentSquares, currentX, currentY)) {
+      setIsPlaying(false)
+      playWinning()
+    }
+  }, [currentSquares, currentX, currentY, playWinning])
   return (
     <>
       <GlobalStyle />
       <Title>Gomoku Game</Title>
-      <Board board={board} handleClick={handleClick} />
+      <Board
+        board={board}
+        handleClick={handleClick}
+        handleSound={handleSound}
+        $isBlackNext={isBlackNext}
+      />
       <Info />
-      {winner && <Modal winner={winner} />}
+      {!isPlaying && (
+        <Modal
+          setIsPlaying={setIsPlaying}
+          playStart={playStart}
+          playClicked={playClicked}
+          winner={calculateWinner(currentSquares, currentX, currentY)}
+        />
+      )}
       <Footer />
     </>
   )
