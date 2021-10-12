@@ -83,6 +83,7 @@ export default function App() {
           setIsPlaying={setIsPlaying}
           playStart={playStart}
           playClicked={playClicked}
+          setBoard={setBoard}
           winner={calculateWinner(currentSquares, currentX, currentY)}
         />
       )}

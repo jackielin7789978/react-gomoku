@@ -37,7 +37,8 @@ export default function Modal({
   setIsPlaying,
   playStart,
   playClicked,
-  winner
+  winner,
+  setBoard
 }) {
   return (
     <ModalContainer>
@@ -57,7 +58,14 @@ export default function Modal({
           <Restart
             onClick={() => {
               playClicked()
-              window.location.reload()
+              setIsPlaying(true)
+              playStart()
+              setBoard({
+                squares: Array(19)
+                  .fill(0)
+                  .map(() => Array(19).fill(null)),
+                coordinates: [null, null]
+              })
             }}
           >
             Play Again
