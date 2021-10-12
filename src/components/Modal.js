@@ -16,7 +16,7 @@ const ModalContainer = styled.div`
 const EndingMsg = styled.div`
   font-size: 120px;
   margin-bottom: 50px;
-  color: #e5e5e5;
+  color: #eee;
 `
 const Restart = styled.a`
   font-size: 30px;
