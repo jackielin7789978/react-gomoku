@@ -1,3 +1,7 @@
+[Demo Link](https://jackielin7789978.github.io/react-gomoku/)
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
