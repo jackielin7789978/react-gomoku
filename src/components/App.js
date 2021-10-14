@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import useSound from 'use-sound'
 import { gamestart, blackchess, whitechess, winning, click } from '../sounds'
-import styled from 'styled-components'
 import GlobalStyle from '../constants/GlobalStyle'
 import Board from './Board'
 import Info from './Info'
@@ -9,17 +8,9 @@ import Modal from './Modal'
 import Footer from './Footer'
 import { calculateWinner } from '../utils'
 
-const Title = styled.div`
-  font-size: 48px;
-  color: #222;
-  width: 500px;
-  text-align: center;
-  margin: 80px auto 40px auto;
-  letter-spacing: 1.5px;
-`
-
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isSoundOn, setIsSoundOn] = useState(true)
   const [isBlackNext, setIsBlackNext] = useState(true)
   const [board, setBoard] = useState({
     squares: Array(19)
@@ -31,11 +22,11 @@ export default function App() {
   const currentSquares = board.squares
   const currentX = board.coordinates[0]
   const currentY = board.coordinates[1]
-  const [playStart] = useSound(gamestart, { volume: 2 })
-  const [playBlack] = useSound(blackchess, { volume: 2 })
-  const [playWhite] = useSound(whitechess, { volume: 2 })
-  const [playWinning] = useSound(winning, { volume: 2 })
-  const [playClicked] = useSound(click, { volume: 2 })
+  const [playStart] = useSound(gamestart, { volume: 1 })
+  const [playBlack] = useSound(blackchess, { volume: 1 })
+  const [playWhite] = useSound(whitechess, { volume: 1 })
+  const [playWinning] = useSound(winning, { volume: 1 })
+  const [playClicked] = useSound(click, { volume: 1 })
 
   const handleClick = (x, y) => {
     if (
@@ -58,29 +49,37 @@ export default function App() {
   }
 
   const handleSound = ($isBlackNext) => {
+    if (!isSoundOn) return
     $isBlackNext ? playBlack() : playWhite()
+  }
+
+  const toggleSoundSetting = () => {
+    setIsSoundOn(!isSoundOn)
   }
 
   useEffect(() => {
     if (calculateWinner(currentSquares, currentX, currentY)) {
       setIsPlaying(false)
-      playWinning()
+      isSoundOn && playWinning()
     }
-  }, [currentSquares, currentX, currentY, playWinning])
+  }, [currentSquares, currentX, currentY, playWinning, isSoundOn])
   return (
     <>
       <GlobalStyle />
-      <Title>Gomoku Game</Title>
       <Board
         board={board}
         handleClick={handleClick}
         handleSound={handleSound}
+        playClicked={playClicked}
         $isBlackNext={isBlackNext}
+        toggleSoundSetting={toggleSoundSetting}
+        isSoundOn={isSoundOn}
       />
       <Info />
       {!isPlaying && (
         <Modal
           setIsPlaying={setIsPlaying}
+          isSoundOn={isSoundOn}
           playStart={playStart}
           playClicked={playClicked}
           setBoard={setBoard}

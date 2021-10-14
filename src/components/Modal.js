@@ -35,6 +35,7 @@ const StartGame = styled(Restart)`
 
 export default function Modal({
   setIsPlaying,
+  isSoundOn,
   playStart,
   playClicked,
   winner,
@@ -46,7 +47,7 @@ export default function Modal({
         <StartGame
           onClick={() => {
             setIsPlaying(true)
-            playStart()
+            isSoundOn && playStart()
           }}
         >
           Start Game
@@ -57,9 +58,9 @@ export default function Modal({
           <EndingMsg>Winner is {winner}</EndingMsg>
           <Restart
             onClick={() => {
-              playClicked()
+              isSoundOn && playClicked()
               setIsPlaying(true)
-              playStart()
+              isSoundOn && playStart()
               setBoard({
                 squares: Array(19)
                   .fill(0)

@@ -1,5 +1,17 @@
 import styled from 'styled-components'
+import Settings from './Settings'
 
+const Title = styled.div`
+  position: absolute;
+  left: 50%;
+  margin-top: 20px;
+  transform: translate(-50%, 0);
+  font-size: 48px;
+  color: #222;
+  width: 500px;
+  text-align: center;
+  letter-spacing: 1.5px;
+`
 const ChessBoard = styled.div`
   background: #b89874;
   width: 570px;
@@ -104,55 +116,66 @@ export default function Board({
   handleClick,
   handleSound,
   board,
-  $isBlackNext
+  $isBlackNext,
+  toggleSoundSetting,
+  isSoundOn,
+  playClicked
 }) {
   const grids = Array(20)
     .fill(0)
     .map(() => Array(20).fill(null))
 
   return (
-    <ChessBoard>
-      <ChessBorder />
-      <ChessBorder />
-      <ChessBorder />
-      <ChessBorder />
-      {grids.map((grid, index) => (
-        <Row key={index} style={{ width: '600px' }}>
-          {grid.map((row, i) => (
-            <Grid key={index[i]} />
-          ))}
-        </Row>
-      ))}
-      {board.squares.map((col, x) => {
-        return (
-          <Row key={x}>
-            {col.map((row, y) => {
-              return (
-                <>
-                  <Square
-                    key={col[y]}
-                    $isBlackNext={$isBlackNext}
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleClick(x, y)
-                      handleSound($isBlackNext)
-                    }}
-                  >
-                    <span></span>
-                    {!board.squares[x][y] ? (
-                      <></>
-                    ) : board.squares[x][y] === 'Black' ? (
-                      <Black />
-                    ) : (
-                      <White />
-                    )}
-                  </Square>
-                </>
-              )
-            })}
+    <>
+      <Title>Gomoku Game</Title>
+      <Settings
+        toggleSoundSetting={toggleSoundSetting}
+        isSoundOn={isSoundOn}
+        playClicked={playClicked}
+      />
+      <ChessBoard>
+        <ChessBorder />
+        <ChessBorder />
+        <ChessBorder />
+        <ChessBorder />
+        {grids.map((grid, index) => (
+          <Row key={index} style={{ width: '600px' }}>
+            {grid.map((row, i) => (
+              <Grid key={index[i]} />
+            ))}
           </Row>
-        )
-      })}
-    </ChessBoard>
+        ))}
+        {board.squares.map((col, x) => {
+          return (
+            <Row key={x}>
+              {col.map((row, y) => {
+                return (
+                  <>
+                    <Square
+                      key={col[y]}
+                      $isBlackNext={$isBlackNext}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleClick(x, y)
+                        handleSound($isBlackNext)
+                      }}
+                    >
+                      <span></span>
+                      {!board.squares[x][y] ? (
+                        <></>
+                      ) : board.squares[x][y] === 'Black' ? (
+                        <Black />
+                      ) : (
+                        <White />
+                      )}
+                    </Square>
+                  </>
+                )
+              })}
+            </Row>
+          )
+        })}
+      </ChessBoard>
+    </>
   )
 }
