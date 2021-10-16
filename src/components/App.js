@@ -56,6 +56,7 @@ export default function App() {
   const jumpTo = (step) => {
     setHistory(history.slice(0, step + 1))
     setSteps(Number(step) + 1)
+    setIsBlackNext(step % 2 ? false : true)
   }
 
   const handleClick = (x, y) => {
@@ -122,6 +123,7 @@ export default function App() {
           setHistory={setHistory}
           winner={calculateWinner(currentSquares, currentX, currentY)}
           setIsBlackNext={setIsBlackNext}
+          setSteps={setSteps}
         />
       )}
       <Footer />

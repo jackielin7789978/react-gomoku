@@ -40,7 +40,8 @@ export default function Modal({
   winner,
   history,
   setHistory,
-  setIsBlackNext
+  setIsBlackNext,
+  setSteps
 }) {
   return (
     <ModalContainer>
@@ -62,16 +63,8 @@ export default function Modal({
               isSoundOn && playClicked()
               setIsPlaying(true)
               isSoundOn && playStart()
-              setHistory(
-                history.concat([
-                  {
-                    squares: Array(19)
-                      .fill(0)
-                      .map(() => Array(19).fill(null)),
-                    coordinates: [null, null]
-                  }
-                ])
-              )
+              setHistory(history.slice(0, 1))
+              setSteps(0)
               setIsBlackNext(true)
             }}
           >
