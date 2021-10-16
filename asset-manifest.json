@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/react-gomoku/static/js/main.8956d312.chunk.js",
-    "main.js.map": "/react-gomoku/static/js/main.8956d312.chunk.js.map",
+    "main.js": "/react-gomoku/static/js/main.40efcf5b.chunk.js",
+    "main.js.map": "/react-gomoku/static/js/main.40efcf5b.chunk.js.map",
     "runtime-main.js": "/react-gomoku/static/js/runtime-main.8ce7d56f.js",
     "runtime-main.js.map": "/react-gomoku/static/js/runtime-main.8ce7d56f.js.map",
     "static/js/2.eb651ffa.chunk.js": "/react-gomoku/static/js/2.eb651ffa.chunk.js",
@@ -20,6 +20,6 @@
   "entrypoints": [
     "static/js/runtime-main.8ce7d56f.js",
     "static/js/2.eb651ffa.chunk.js",
-    "static/js/main.8956d312.chunk.js"
+    "static/js/main.40efcf5b.chunk.js"
   ]
 }
