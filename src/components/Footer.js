@@ -5,7 +5,7 @@ const FooterContainer = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 30px 0px;
+  padding: 20px 0px;
   text-align: center;
   font-size: 18px;
   letter-spacing: 1.5px;

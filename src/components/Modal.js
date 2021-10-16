@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 const ModalContainer = styled.div`
   position: absolute;
   top: 0;
@@ -39,7 +38,8 @@ export default function Modal({
   playStart,
   playClicked,
   winner,
-  setBoard
+  history,
+  setHistory
 }) {
   return (
     <ModalContainer>
@@ -61,12 +61,16 @@ export default function Modal({
               isSoundOn && playClicked()
               setIsPlaying(true)
               isSoundOn && playStart()
-              setBoard({
-                squares: Array(19)
-                  .fill(0)
-                  .map(() => Array(19).fill(null)),
-                coordinates: [null, null]
-              })
+              setHistory(
+                history.concat([
+                  {
+                    squares: Array(19)
+                      .fill(0)
+                      .map(() => Array(19).fill(null)),
+                    coordinates: [null, null]
+                  }
+                ])
+              )
             }}
           >
             Play Again

@@ -17,6 +17,18 @@ const GlobalStyle = createGlobalStyle`
   #root {
     padding: 1px;
   }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: #e0e0e0;
+  }
   h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;

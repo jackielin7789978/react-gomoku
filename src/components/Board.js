@@ -1,28 +1,15 @@
 import styled from 'styled-components'
 import Settings from './Settings'
 
-const Title = styled.div`
-  position: absolute;
-  left: 50%;
-  margin-top: 20px;
-  transform: translate(-50%, 0);
-  font-size: 48px;
-  color: #222;
-  width: 500px;
-  text-align: center;
-  letter-spacing: 1.5px;
-`
 const ChessBoard = styled.div`
   background: #b89874;
   width: 570px;
   height: 570px;
   box-shadow: 4px 8px 12px 1px rgba(60, 60, 60, 0.5);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   overflow: hidden;
   border-radius: 2px;
+  position: relative;
+  padding-bottom: 20px;
 `
 const ChessBorder = styled.div`
   position: absolute;
@@ -115,7 +102,7 @@ const White = styled(Black)`
 export default function Board({
   handleClick,
   handleSound,
-  board,
+  currentSquares,
   $isBlackNext,
   toggleSoundSetting,
   isSoundOn,
@@ -127,7 +114,6 @@ export default function Board({
 
   return (
     <>
-      <Title>Gomoku Game</Title>
       <Settings
         toggleSoundSetting={toggleSoundSetting}
         isSoundOn={isSoundOn}
@@ -145,7 +131,7 @@ export default function Board({
             ))}
           </Row>
         ))}
-        {board.squares.map((col, x) => {
+        {currentSquares.map((col, x) => {
           return (
             <Row key={x}>
               {col.map((row, y) => {
@@ -161,9 +147,9 @@ export default function Board({
                       }}
                     >
                       <span></span>
-                      {!board.squares[x][y] ? (
+                      {!currentSquares[x][y] ? (
                         <></>
-                      ) : board.squares[x][y] === 'Black' ? (
+                      ) : currentSquares[x][y] === 'Black' ? (
                         <Black />
                       ) : (
                         <White />
