@@ -39,7 +39,8 @@ export default function Modal({
   playClicked,
   winner,
   history,
-  setHistory
+  setHistory,
+  setIsBlackNext
 }) {
   return (
     <ModalContainer>
@@ -71,6 +72,7 @@ export default function Modal({
                   }
                 ])
               )
+              setIsBlackNext(true)
             }}
           >
             Play Again

@@ -121,6 +121,7 @@ export default function App() {
           history={history}
           setHistory={setHistory}
           winner={calculateWinner(currentSquares, currentX, currentY)}
+          setIsBlackNext={setIsBlackNext}
         />
       )}
       <Footer />
