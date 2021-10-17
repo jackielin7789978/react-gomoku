@@ -1,4 +1,8 @@
+import { useContext } from 'react'
+import { SoundContext, GameContext } from '../context'
 import styled from 'styled-components'
+import { useSounds } from '../utils'
+
 const ModalContainer = styled.div`
   position: absolute;
   top: 0;
@@ -32,17 +36,18 @@ const StartGame = styled(Restart)`
   font-size: 54px;
 `
 
-export default function Modal({
-  setIsPlaying,
-  isSoundOn,
-  playStart,
-  playClicked,
-  winner,
-  history,
-  setHistory,
-  setIsBlackNext,
-  setSteps
-}) {
+export default function Modal() {
+  const { playStart, playClicked } = useSounds()
+  const { isSoundOn } = useContext(SoundContext)
+  const {
+    setIsPlaying,
+    winner,
+    history,
+    setHistory,
+    setIsBlackNext,
+    setSteps
+  } = useContext(GameContext)
+
   return (
     <ModalContainer>
       {!winner && (

@@ -1,3 +1,16 @@
+import useSound from 'use-sound'
+import { gamestart, blackchess, whitechess, winning, click } from './sounds'
+
+export const useSounds = () => {
+  const [playStart] = useSound(gamestart, { volume: 1 })
+  const [playBlack] = useSound(blackchess, { volume: 1 })
+  const [playWhite] = useSound(whitechess, { volume: 1 })
+  const [playWinning] = useSound(winning, { volume: 1 })
+  const [playClicked] = useSound(click, { volume: 1 })
+
+  return { playStart, playBlack, playWhite, playWinning, playClicked }
+}
+
 export const calculateWinner = (squares, currentX, currentY) => {
   if (!currentX && !currentY) return
 

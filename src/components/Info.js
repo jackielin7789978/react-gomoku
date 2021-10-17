@@ -1,7 +1,9 @@
+import { useState, useContext } from 'react'
+import { GameContext } from '../context'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useSounds } from '../utils'
 
 const Wrapper = styled.div`
   margin-left: 20px;
@@ -39,9 +41,19 @@ const MenuList = styled.div`
   }
 `
 
-export default function Info({ steps, jumpTo, isBlackNext, playClicked }) {
+export default function Info() {
+  const { steps, setSteps, isBlackNext, setIsBlackNext, history, setHistory } =
+    useContext(GameContext)
   const [isOpen, setIsOpen] = useState(false)
   const moves = Array.from(Array(steps).keys())
+  const { playClicked } = useSounds()
+
+  const jumpTo = (step) => {
+    setHistory(history.slice(0, step + 1))
+    setSteps(Number(step) + 1)
+    setIsBlackNext(step % 2 ? false : true)
+  }
+
   return (
     <Wrapper>
       <h3>Next Player: {isBlackNext ? 'Black' : 'White'}</h3>

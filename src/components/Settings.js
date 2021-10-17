@@ -1,7 +1,10 @@
+import { useContext } from 'react'
+import { SoundContext } from '../context'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
 import { faVolumeMute } from '@fortawesome/free-solid-svg-icons'
+import { useSounds } from '../utils'
 
 const Container = styled.div`
   position: absolute;
@@ -18,7 +21,7 @@ const Bar = styled.div`
 `
 const Circle = styled.span`
   position: absolute;
-  left: ${({ $isSoundOn }) => ($isSoundOn ? '40%' : 0)};
+  left: ${({ $isSoundOn }) => ($isSoundOn ? '40%' : '0')};
   top: -6px;
   width: 30px;
   height: 30px;
@@ -33,17 +36,15 @@ const iconStyles = {
   right: '7px'
 }
 
-export default function Settings({
-  toggleSoundSetting,
-  isSoundOn,
-  playClicked
-}) {
+export default function Settings() {
+  const { playClicked } = useSounds()
+  const { isSoundOn, setIsSoundOn } = useContext(SoundContext)
   return (
     <Container>
       <Bar />
       <Circle
         onClick={() => {
-          toggleSoundSetting()
+          setIsSoundOn(!isSoundOn)
           playClicked()
         }}
         $isSoundOn={isSoundOn}

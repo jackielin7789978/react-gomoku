@@ -1,3 +1,6 @@
+import { useContext } from 'react'
+import { SoundContext, GameContext } from '../context'
+import { useSounds } from '../utils'
 import styled from 'styled-components'
 import Settings from './Settings'
 
@@ -99,26 +102,50 @@ const White = styled(Black)`
   border: 1px solid #ddd;
 `
 
-export default function Board({
-  handleClick,
-  handleSound,
-  currentSquares,
-  $isBlackNext,
-  toggleSoundSetting,
-  isSoundOn,
-  playClicked
-}) {
+export default function Board() {
+  const { playBlack, playWhite } = useSounds()
+  const { isSoundOn } = useContext(SoundContext)
+  const {
+    isBlackNext,
+    setIsBlackNext,
+    currentSquares,
+    winner,
+    history,
+    setHistory,
+    steps,
+    setSteps
+  } = useContext(GameContext)
+  const handleSound = (isBlackNext) => {
+    if (!isSoundOn) return
+    isBlackNext ? playBlack() : playWhite()
+  }
+  const handleClick = (x, y) => {
+    if (winner || currentSquares[x][y]) return
+    const newRow = currentSquares[x].map((square, index) => {
+      if (index !== y) return square
+      return isBlackNext ? 'Black' : 'White'
+    })
+    setHistory(
+      history.concat([
+        {
+          squares: currentSquares.map((row, index) => {
+            if (index !== x) return row
+            return newRow
+          }),
+          coordinates: [x, y]
+        }
+      ])
+    )
+    setIsBlackNext(!isBlackNext)
+    setSteps(steps + 1)
+  }
   const grids = Array(20)
     .fill(0)
     .map(() => Array(20).fill(null))
 
   return (
     <>
-      <Settings
-        toggleSoundSetting={toggleSoundSetting}
-        isSoundOn={isSoundOn}
-        playClicked={playClicked}
-      />
+      <Settings />
       <ChessBoard>
         <ChessBorder />
         <ChessBorder />
@@ -139,11 +166,11 @@ export default function Board({
                   <>
                     <Square
                       key={col[y]}
-                      $isBlackNext={$isBlackNext}
+                      $isBlackNext={isBlackNext}
                       onClick={(e) => {
                         e.stopPropagation()
                         handleClick(x, y)
-                        handleSound($isBlackNext)
+                        handleSound(isBlackNext)
                       }}
                     >
                       <span></span>
