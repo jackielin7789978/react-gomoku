@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/react-gomoku/static/js/main.6432557f.chunk.js",
-    "main.js.map": "/react-gomoku/static/js/main.6432557f.chunk.js.map",
+    "main.js": "/react-gomoku/static/js/main.664563d7.chunk.js",
+    "main.js.map": "/react-gomoku/static/js/main.664563d7.chunk.js.map",
     "runtime-main.js": "/react-gomoku/static/js/runtime-main.8ce7d56f.js",
     "runtime-main.js.map": "/react-gomoku/static/js/runtime-main.8ce7d56f.js.map",
-    "static/js/2.eb651ffa.chunk.js": "/react-gomoku/static/js/2.eb651ffa.chunk.js",
-    "static/js/2.eb651ffa.chunk.js.map": "/react-gomoku/static/js/2.eb651ffa.chunk.js.map",
+    "static/js/2.02997f3a.chunk.js": "/react-gomoku/static/js/2.02997f3a.chunk.js",
+    "static/js/2.02997f3a.chunk.js.map": "/react-gomoku/static/js/2.02997f3a.chunk.js.map",
     "static/js/3.0727caa2.chunk.js": "/react-gomoku/static/js/3.0727caa2.chunk.js",
     "static/js/3.0727caa2.chunk.js.map": "/react-gomoku/static/js/3.0727caa2.chunk.js.map",
     "index.html": "/react-gomoku/index.html",
-    "static/js/2.eb651ffa.chunk.js.LICENSE.txt": "/react-gomoku/static/js/2.eb651ffa.chunk.js.LICENSE.txt",
+    "static/js/2.02997f3a.chunk.js.LICENSE.txt": "/react-gomoku/static/js/2.02997f3a.chunk.js.LICENSE.txt",
     "static/js/3.0727caa2.chunk.js.LICENSE.txt": "/react-gomoku/static/js/3.0727caa2.chunk.js.LICENSE.txt",
     "static/media/blackchess.a419a936.mp3": "/react-gomoku/static/media/blackchess.a419a936.mp3",
     "static/media/click.7ea98b81.mp3": "/react-gomoku/static/media/click.7ea98b81.mp3",
@@ -19,7 +19,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.8ce7d56f.js",
-    "static/js/2.eb651ffa.chunk.js",
-    "static/js/main.6432557f.chunk.js"
+    "static/js/2.02997f3a.chunk.js",
+    "static/js/main.664563d7.chunk.js"
   ]
 }
