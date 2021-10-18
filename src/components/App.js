@@ -35,12 +35,12 @@ export default function App() {
     }
   ])
   const [steps, setSteps] = useState(0)
+  const [isSoundOn, setIsSoundOn] = useState(true)
   const currentSquares = history[history.length - 1].squares
   const currentX = history[history.length - 1].coordinates[0]
   const currentY = history[history.length - 1].coordinates[1]
   const { playWinning } = useSounds()
   const winner = calculateWinner(currentSquares, currentX, currentY)
-  const [isSoundOn, setIsSoundOn] = useState(true)
 
   useEffect(() => {
     if (winner) {

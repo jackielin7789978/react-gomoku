@@ -54,6 +54,7 @@ export default function Modal() {
         <StartGame
           onClick={() => {
             setIsPlaying(true)
+            isSoundOn && playClicked()
             isSoundOn && playStart()
           }}
         >

@@ -3,6 +3,7 @@ import { SoundContext, GameContext } from '../context'
 import { useSounds } from '../utils'
 import styled from 'styled-components'
 import Settings from './Settings'
+import { uniqueId } from 'lodash'
 
 const ChessBoard = styled.div`
   background: #b89874;
@@ -151,21 +152,21 @@ export default function Board() {
         <ChessBorder />
         <ChessBorder />
         <ChessBorder />
-        {grids.map((grid, index) => (
-          <Row key={index} style={{ width: '600px' }}>
+        {grids.map((grid) => (
+          <Row key={uniqueId()} style={{ width: '600px' }}>
             {grid.map((row, i) => (
-              <Grid key={index[i]} />
+              <Grid key={uniqueId()} />
             ))}
           </Row>
         ))}
         {currentSquares.map((col, x) => {
           return (
-            <Row key={x}>
+            <Row key={uniqueId()}>
               {col.map((row, y) => {
                 return (
                   <>
                     <Square
-                      key={col[y]}
+                      key={uniqueId()}
                       $isBlackNext={isBlackNext}
                       onClick={(e) => {
                         e.stopPropagation()
