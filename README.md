@@ -1,4 +1,8 @@
-[Demo Link](https://jackielin7789978.github.io/react-gomoku/)
+## React 五子棋遊戲
+
+這是 Lidemy 程式導師計畫的作業，是用 React 做的五子棋小遊戲，使用 function components + Hooks 實作，聲音的部分則是使用 [useSound](https://www.npmjs.com/package/use-sound) 這個方便的 custom hook。
+
+[Demo 連結](https://jackielin7789978.github.io/react-gomoku/)
 
 ---
 
