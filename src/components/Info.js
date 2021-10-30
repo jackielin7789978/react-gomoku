@@ -28,8 +28,10 @@ const Chevron = styled(FontAwesomeIcon)`
 `
 const MenuList = styled.div`
   width: 150px;
-  margin: 0px 10px 10px 10px;
+  max-height: 49vh;
+  margin: 0px 10px;
   background: #fcfcfc;
+  overflow: scroll;
 
   ${({ $isOpen }) => ($isOpen ? 'display: block' : 'display: none')};
   div {
