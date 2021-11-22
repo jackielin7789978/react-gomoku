@@ -32,7 +32,6 @@
       "prettier --write"
     ]
   },
-  "homepage": "https://jackielin7789978.github.io/react-gomoku",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
